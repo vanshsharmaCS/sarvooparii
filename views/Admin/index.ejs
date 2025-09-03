@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/x-icon" href="/images/logo.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="text/css" rel="stylesheet" href="css/admin.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>/* Modal Background */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+        }
+        
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+        }
+        
+        /* Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        </style>
+        <style>
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            }
+            
+            .modal-content {
+                background-color: #fefefe;
+                margin: 15% auto; /* 15% from the top and centered */
+                padding: 20px;
+                border: 1px solid #888;
+                width: 50%; /* Could be more or less, depending on screen size */
+                color: #000;
+            }
+            </style>
+</head>
+<body>
+    <section id="sidebar">
+        <div class="sidebar-brand">
+            <h2><i class="fa fa-cogs"></i>Swipe2Clean<span></span></h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li><a href="/Admin"><i class="fa fa-desktop"></i> <span>Control</span></a></li>
+                <li><a href="https://qrcodeeeeeee.netlify.app/" target="_blank"><i class="fa fa-users"></i> <span>Generate</span></a></li>
+                <li><a href="#" onclick="openFeedbackModal()"><i class="fa fa-files-o"></i> <span>Feedback</span></a></li>
+                <li><a href="#"><i class="fa fa-flag-checkered"></i> <span>Events</span></a></li>
+                <li><a href="#"><i class="fa fa-briefcase"></i> <span>Clients</span></a></li>
+                <li><a href="#"><i class="fa fa-cart-arrow-down"></i> <span>Orders</span></a></li>
+                <li><a href="#" onclick="openBidsModal()"><i class="fa fa-inr"></i> <span>Bids</span></a></li>
+                <div id="bidsModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeBidsModal()">&times;</span>
+                        <h2>5</h2> <!-- Displaying number 5 -->
+                    </div>
+                </div>
+                <div id="feedbackModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeFeedbackModal()">&times;</span>
+                        <h2>Feedback List</h2>
+                        <div id="feedbackList"></div>
+                    </div>
+                </div>
+
+                <!-- District Map Button in Sidebar Menu -->
+                <li><a href="#" onclick="openMapModal()"><i class="fa fa-map"></i> <span>District Map</span></a></li>
+                <!-- Modal for Map Popup -->
+                <div id="mapModal" class="modal">
+                    <div class="modal-content">
+                    <span class="close" onclick="closeMapModal()">&times;</span>
+                    <h2>Mathura City Map</h2>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d109196.33829439921!2d77.63521453854144!3d27.492413049122758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3974773ef3e90ecf%3A0x95d398ef68aa72c5!2sMathura%2C%20Uttar%20Pradesh%2C%20India!5e0!3m2!1sen!2sus!4v1615553247316!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                <li><a href="https://swachhbharatmission.gov.in/SBMGUPLOAD/writereaddata/Portal/Marquee/File/d96f153d-a_SBM_G__Ph-2_Guidelines_-_Hindi.pdf" target="_blank"><i class="fa fa-book"></i> <span>Documents</span></a></li>
+                <li><a href="/AdminLogout"><i class="fa fa-sign-out"></i> <span>Log out</span></a></li>
+            </ul>
+        </div>
+    </section>
+
+    <Section id="main-content">
+        <header>
+            <div class="header-left">
+                <h2 class="toggle-btn">
+                    Nagar Nigam Mathura
+                </h2>
+            </div>
+            <div class="header-left header-serach">
+                <form action="/Admin" method="GET" class="serach-par"> <!-- Form added -->
+                    <input class="search" type="text" name="search" placeholder="Search by location">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>            
+            <div class="header-left header-profile">
+                <img src="images/user.png" class="img-responsive" />
+                <h3><%= user.name %></h3>
+                <p><%= user.lastLogin %></p>
+            </div>
+            <div class="clear"></div>
+        </header>
+        
+        <div class="clear"></div>
+        <div class="main-content-info container">
+            <div class="card">
+                <h2 class="cus-num cus-comp"><%= activeComplaints %></h2>
+                <p>Active Complaints</p>
+            </div>
+            <div class="card">
+                <h2 class="cus-num cus-ord"><%= activeusers %></h2>
+                <p>Total Users</p>
+            </div>
+            <div class="card">
+                <h2 class="cus-num cus-bid"><%= activeBiddings %></h2>
+                <p>Active Workers</p>
+            </div>
+            <div class="card">
+                <h2 class="cus-num cus-eve"><%= activeEvents %></h2>
+                <p>Active Events</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+                
+        <div class="content-pro-par container">
+            <div class="pro-table">
+                <div class="recent-project">
+                    <div class="rec-pro-h">
+                        <h2>Ongoing Tasks</h2><p>(<%= activeComplaints %>)</p>
+                    </div>
+            
+                    <div class="see-all">
+                        <button>See all</button>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <table style="width:100%">
+                    <tr>
+                        <th>Complain ID</th>
+                        <th>Waste Type</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                    </tr>
+                    <% complaints.forEach(complaint => { %>
+                        <tr>
+                            <td><%= complaint.id %></td>
+                            <td><%= complaint.wasteType %></td>
+                            <td><%= complaint.location %></td>
+                            <td>
+                                <span class="<%= complaint.status === 'Ongoing' ? 'rev-span' : complaint.status === 'Action Taken' ? 'progress-span' : 'pending-span' %>"></span>
+                                <%= complaint.status %>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </table>
+                
+            </div>
+            
+            <div class="pro-cus">
+                <div class="recent-project">
+                    <div class="rec-pro-h">
+                        <h2>Workers</h2>
+                    </div>
+                    <table style="width:100%">
+                        <tr>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Contact</th>
+                        </tr>
+                        <% businessUsers.forEach(user => { %>
+                            <tr>
+                                <td><%= user.username %> [M]</td> <!-- Adjust gender if needed -->
+                                <td>
+                                    <% 
+                                        // Calculate the time difference
+                                        const lastLogin = new Date(user.lastLogin);
+                                        const now = new Date();
+                                        const timeDiff = now - lastLogin; // Time difference in milliseconds
+                                        const hoursDiff = timeDiff / (1000 * 60 * 60); // Convert to hours
+                                        const status = (hoursDiff < 24) ? 'Present' : 'Absent';
+                                    %>
+                                    <span class="rev-span">&nbsp;&nbsp;&nbsp;<%= status %></span>
+                                    <span class="status-dot <%= (hoursDiff < 24) ? 'green-dot' : 'red-dot' %>"></span>
+                                </td>
+                                <td class="cnt-info-td"><i class="fa fa-phone"></i></td>
+                            </tr>
+                        <% }); %>
+                    </table>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </Section>
+    <div class="clear"></div>
+    <script>
+        function openBidsModal() {
+    const bidsModal = document.getElementById('bidsModal');
+    bidsModal.style.display = 'block'; // Show the Bids modal
+}
+
+function closeBidsModal() {
+    const bidsModal = document.getElementById('bidsModal');
+    bidsModal.style.display = 'none'; // Hide the Bids modal
+}
+
+        window.onclick = function(event) {
+    const bidsModal = document.getElementById('bidsModal');
+    if (event.target == bidsModal) {
+        closeBidsModal();
+    }
+
+    const feedbackModal = document.getElementById('feedbackModal');
+    if (event.target == feedbackModal) {
+        closeFeedbackModal();
+    }
+
+    const mapModal = document.getElementById('mapModal');
+    if (event.target == mapModal) {
+        closeMapModal();
+    }
+}
+
+    </script>
+    <script>
+        async function openFeedbackModal() {
+    const feedbackModal = document.getElementById('feedbackModal');
+    const feedbackList = document.getElementById('feedbackList');
+
+    try {
+        const response = await fetch('/api/feedback'); // Make sure the endpoint is correct
+        const feedbacks = await response.json();
+
+        feedbackList.innerHTML = ''; // Clear previous feedback
+        feedbacks.forEach(feedback => {
+            const feedbackItem = document.createElement('div');
+            feedbackItem.innerHTML = `<strong>${feedback.userr} (${feedback.uemail})</strong>: ${feedback.ucomment}`;
+            feedbackList.appendChild(feedbackItem);
+        });
+
+        feedbackModal.style.display = 'block'; // Show the modal
+    } catch (error) {
+        console.error('Error fetching feedback:', error);
+    }
+}
+
+function closeFeedbackModal() {
+    document.getElementById('feedbackModal').style.display = 'none'; // Hide the modal
+}
+
+// Close the modal when the user clicks anywhere outside of it
+window.onclick = function(event) {
+    const modal = document.getElementById('feedbackModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
+
+    </script>
+<script>
+    function openMapModal() {
+        document.getElementById('mapModal').style.display = 'block';
+    }
+    function closeMapModal() {
+        document.getElementById('mapModal').style.display = 'none';
+    }
+    window.onclick = function(event) {
+        const modal = document.getElementById('mapModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+    </script>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/external.js"></script>
+</body>
+
+</html>

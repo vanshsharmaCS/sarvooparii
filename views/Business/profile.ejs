@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swipe2Clean User</title>
+    <!-- Use one Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <style>
+        /* Moved internal styles here */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans', sans-serif;
+        }
+        html, body {
+            height: 100%;
+        }
+        body {
+            display: grid;
+            place-items: center;
+            background: #AB47BC;
+        }
+        .card {
+            color: #fff;
+            width: 350px;
+            border-radius: 10px;
+            background: linear-gradient(145deg, #9a40a9, #b74cc9);
+            box-shadow: 20px 20px 60px #913ca0, -20px -20px 60px #c552d8;
+            border: none;
+        }
+        .neo-button {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 15px;
+            border: none;
+            margin-right: 10px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #9a40a9, #b74cc9);
+            box-shadow: inset 20px 20px 60px #913ca0, inset -20px -20px 60px #c552d8;
+        }
+        .neo-button:active {
+            background: #AB47BC;
+            box-shadow: 28px 28px 57px #933da2, -28px -28px 57px #c351d6;
+        }
+        .num {
+            color: #eee !important;
+        }
+        .line {
+            color: #fff;
+        }
+        .profile_button {
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 50px;
+            background: #AB47BC;
+            box-shadow: 28px 28px 57px #933da2, -28px -28px 57px #c351d6;
+        }
+    </style>
+    <link rel="icon" type="image/x-icon" href="/images/logo.jpg">
+</head>
+
+<body>
+    <div class="container d-flex justify-content-center">
+        <div class="card p-3 py-4">
+            <div class="text-center"> 
+                <img src="images/user.png" width="100" class="rounded-circle">
+                <h3 class="mt-2"><%= user.username %></h3> <!-- Display user's name -->
+                <span class="mt-1 clearfix">Worker: <%= user._id %> </span>
+                
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-4">
+                        <h5>Purchase</h5>
+                        <span class="num"><%= user.purchases || 0 %></span>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Sell</h5>
+                        <span class="num"><%= user.sales || 0 %></span> <!-- Dynamic Sell Count -->
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Earn Profit</h5>
+                        <span class="num"><%= user.profit || 0 %></span> <!-- Dynamic Profit Amount -->
+                    </div>
+                </div>
+                
+                <hr class="line">
+                
+                <small class="mt-4">I am an android developer working at google Inc at california,USA</small>
+                <div class="social-buttons mt-5"> 
+                    <button class="neo-button"><i class="fab fa-facebook fa-1x"></i></button>
+                    <button class="neo-button"><i class="fab fa-linkedin fa-1x"></i></button> 
+                    <button class="neo-button"><i class="fab fa-google fa-1x"></i> </button> 
+                    <button class="neo-button"><i class="fab fa-youtube fa-1x"></i> </button>
+                    <button class="neo-button"><i class="fab fa-twitter fa-1x"></i> </button>
+                </div>
+                
+                <div class="profile mt-5">
+                    <a href="/Business"><button class="profile_button px-5">Back</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
